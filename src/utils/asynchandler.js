@@ -1,7 +1,7 @@
 export {asynchandler}
 
 
-const asynchandler = (fn) => (req, res, next) => {
+const asynchandler = (fn) => async (req, res, next) => {
     try{
         await fn(req, res, next)
     }

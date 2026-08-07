@@ -13,4 +13,10 @@ app.use(express.json({limit: '10mb'}));
 app.use(express.urlencoded({extended: true, limit: '10mb'}));
 app.use(express.static('public'));
 
-export {app}
+import userRoutes from './routes/user.routes.js';
+
+app.use("/api/v1/user", userRoutes);
+
+// http://localhost:8000/api/v1/user/register
+
+export {app} 
