@@ -9,7 +9,7 @@ cloudinary.config({
 
 const uploadOnCloudinary = async (filePath) => {
     try{
-        if(!filePath) throw new Error('File path is required');
+        if (!filePath) return null;
         const response = await cloudinary.uploader.upload(filePath, {
             resource_type: 'auto'
         })
@@ -17,7 +17,11 @@ const uploadOnCloudinary = async (filePath) => {
         return response;
     }
     catch(error){
-        fs.unlinkSync(filePath);
+        if (filePath) {
+            fs.unlinkSync(filePath);
+        }
         return {error: error.message};
     }
 }
+
+export {uploadOnCloudinary}
