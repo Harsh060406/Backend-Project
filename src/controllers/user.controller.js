@@ -110,8 +110,8 @@ const logoutUser = asynchandler(async (req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             }
         },
         {
@@ -229,7 +229,7 @@ const updateUserAvatar = asynchandler(async (req, res) => {
         req.user?._id,
         {
             $set: {
-                avatar = avatar.url
+                avatar: avatar.url
             }
         },
         {new: true}
@@ -255,7 +255,7 @@ const updateUserCoverImage = asynchandler(async (req, res) => {
         req.user?._id,
         {
             $set: {
-                coverImage = coverImage.url
+                coverImage: coverImage.url
             }
         },
         {new: true}
